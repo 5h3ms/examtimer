@@ -49,7 +49,7 @@ function App() {
       <div>
         <h1>HacktoberFest 2020 Countdown</h1>
         <h2>With React Hooks!</h2>  
-      {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+      {timerComponents.length ? timerComponents : <span>Times up!</span>}
    </div>  
   );
 }
