@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/examtimer/static/css/main.1dbcb586.chunk.css",
-    "main.js": "/examtimer/static/js/main.54fd55f5.chunk.js",
-    "main.js.map": "/examtimer/static/js/main.54fd55f5.chunk.js.map",
+    "main.js": "/examtimer/static/js/main.9e981035.chunk.js",
+    "main.js.map": "/examtimer/static/js/main.9e981035.chunk.js.map",
     "runtime-main.js": "/examtimer/static/js/runtime-main.efd8ccb1.js",
     "runtime-main.js.map": "/examtimer/static/js/runtime-main.efd8ccb1.js.map",
-    "static/js/2.cc51bd88.chunk.js": "/examtimer/static/js/2.cc51bd88.chunk.js",
-    "static/js/2.cc51bd88.chunk.js.map": "/examtimer/static/js/2.cc51bd88.chunk.js.map",
+    "static/js/2.b859d541.chunk.js": "/examtimer/static/js/2.b859d541.chunk.js",
+    "static/js/2.b859d541.chunk.js.map": "/examtimer/static/js/2.b859d541.chunk.js.map",
     "static/js/3.547166be.chunk.js": "/examtimer/static/js/3.547166be.chunk.js",
     "static/js/3.547166be.chunk.js.map": "/examtimer/static/js/3.547166be.chunk.js.map",
     "index.html": "/examtimer/index.html",
     "static/css/main.1dbcb586.chunk.css.map": "/examtimer/static/css/main.1dbcb586.chunk.css.map",
-    "static/js/2.cc51bd88.chunk.js.LICENSE.txt": "/examtimer/static/js/2.cc51bd88.chunk.js.LICENSE.txt"
+    "static/js/2.b859d541.chunk.js.LICENSE.txt": "/examtimer/static/js/2.b859d541.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.efd8ccb1.js",
-    "static/js/2.cc51bd88.chunk.js",
+    "static/js/2.b859d541.chunk.js",
     "static/css/main.1dbcb586.chunk.css",
-    "static/js/main.54fd55f5.chunk.js"
+    "static/js/main.9e981035.chunk.js"
   ]
 }
