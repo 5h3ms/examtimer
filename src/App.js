@@ -5,8 +5,8 @@ import React from 'react';
 function App() {
   return (
     <div>
-      <Timer />
-      <Timer />
+      <Timer minutes={5} />
+      <Timer days={1} hours={2} minutes={5} seconds={3} />
     </div>
   );
 }
