@@ -9,7 +9,6 @@ function App() {
       <h2>With React Hooks!</h2>
       <Timer minutes={5} />
       <Timer days={1} hours={2} minutes={5} seconds={3} />
-      >>>>>>> ceb6c162e204421535adf93c192bbdd3aa956add
     </div>
   );
 }

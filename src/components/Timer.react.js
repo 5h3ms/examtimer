@@ -59,6 +59,12 @@ function Timer({ days = 0, hours = 0, minutes = 0, seconds = 0 }) {
   }, [timeSeconds]);
 
   const timerComponents = useMemo(() => updateUI(timeLeft), [timeLeft]);
+
+  return (
+    <div>
+      {timerComponents.length ? timerComponents : <span>Time is up!</span>}
+    </div>
+  );
 }
 
 Timer.propTypes = {
