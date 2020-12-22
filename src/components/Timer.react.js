@@ -27,7 +27,7 @@ function Timer() {
     }, 1000);
     // Clear timeout if the component is unmounted
     return () => clearTimeout(timer);
-  });
+  }, []);
 
   const timerComponents = [];
 
