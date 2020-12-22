@@ -24,7 +24,7 @@ function Timer() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
-    }, 100);
+    }, 1000);
     // Clear timeout if the component is unmounted
     return () => clearTimeout(timer);
   }, []);
