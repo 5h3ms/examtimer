@@ -22,7 +22,7 @@
     "deploy": "gh-pages -d build",
     "lint:scss": "stylelint 'src/**/*.scss' --syntax scss",
     "lint:scss:fix": "stylelint 'src/**/*.scss' --syntax scss --fix",
-    "lint:js": "eslint . --ext .js,.jsx --fix"
+    "lint:js": "eslint ./src/ --ext .js,.jsx --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -51,10 +51,12 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [
-      "eslint . --fix", "git add"
+      "eslint . --fix",
+      "git add"
     ],
     "src/**/*.scss": [
-      "stylelint --syntax scss --fix", "git add"
+      "stylelint --syntax scss --fix",
+      "git add"
     ]
   },
   "husky": {
