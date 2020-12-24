@@ -1,5 +1,5 @@
-import "./Timer.css";
-import { useEffect, useState } from "react";
+import './Timer.css';
+import { useEffect, useState, ReactElement } from 'react';
 
 interface TimerProps {
   days?: number;
@@ -24,15 +24,20 @@ function calculateTimeLeft(timeSeconds: number): TimerProps {
   return timeLeft;
 }
 
-function Timer({ days = 0, hours = 0, minutes = 0, seconds = 0 }: TimerProps) {
+function Timer({
+  days = 0,
+  hours = 0,
+  minutes = 0,
+  seconds = 0,
+}: TimerProps): ReactElement {
   const [timeSeconds, setTimeSeconds] = useState(
-    days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds
+    days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds,
   );
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(timeSeconds));
 
   useEffect(() => {
     setTimeSeconds(
-      days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds
+      days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds,
     );
     const timer = setInterval(() => {
       setTimeSeconds((difference) => difference - 1);
@@ -50,7 +55,7 @@ function Timer({ days = 0, hours = 0, minutes = 0, seconds = 0 }: TimerProps) {
       {timeSeconds > 0 ? (
         Object.entries(timeLeft).flatMap(([interval, time]) => (
           <span>
-            {time} {interval}{" "}
+            {time} {interval}{' '}
           </span>
         ))
       ) : (

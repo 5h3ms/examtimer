@@ -1,6 +1,6 @@
 import './App.css';
 import Timer from './components/Timer.react';
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback, ReactElement } from 'react';
 import {
   Switch,
   Grid,
@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-function App() {
+function App(): ReactElement {
   const [darkMode, setDarkMode] = useState(false);
 
   const theme = createMuiTheme({
