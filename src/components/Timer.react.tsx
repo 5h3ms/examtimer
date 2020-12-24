@@ -2,10 +2,10 @@ import './Timer.css';
 import { useEffect, useState, ReactElement } from 'react';
 
 interface TimerProps {
-  days?: number;
-  hours?: number;
-  minutes?: number;
-  seconds?: number;
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
 }
 
 // given: time in seconds, function calculates how much time is left in days, minutes, seconds
@@ -29,7 +29,7 @@ function Timer({
   hours = 0,
   minutes = 0,
   seconds = 0,
-}: TimerProps): ReactElement {
+}: Partial<TimerProps>): ReactElement {
   const [timeSeconds, setTimeSeconds] = useState(
     days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds,
   );
@@ -53,11 +53,14 @@ function Timer({
   return (
     <div>
       {timeSeconds > 0 ? (
-        Object.entries(timeLeft).flatMap(([interval, time]) => (
-          <span>
-            {time} {interval}{' '}
-          </span>
-        ))
+        Object.entries(timeLeft).flatMap(([interval, time]) => {
+          if (time > 0)
+            return (
+              <span>
+                {time} {interval}{' '}
+              </span>
+            );
+        })
       ) : (
         <span>Time is up!</span>
       )}
