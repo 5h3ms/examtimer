@@ -30,7 +30,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper style={{ height: '100vh' }}>
+      <Paper className="App-paper">
         <Typography variant="h3">Centre number RU105</Typography>
         <Button variant="contained" color="primary" onClick={addTimer}>
           Add timer
@@ -38,7 +38,7 @@ function App() {
         <Grid container spacing={5} justify="center">
           {timers.map((timer, index) => (
             <Grid item xs={6} key={index}>
-              <Card variant="outlined">
+              <Card variant="outlined" className="Card">
                 <Typography variant="h5">Timer {index}</Typography>
                 {timer}
               </Card>
