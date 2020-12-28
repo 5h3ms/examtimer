@@ -75,7 +75,7 @@ function Timer({
         Object.entries(timeLeft).flatMap(([interval, time]) => {
           if (time > 0)
             return (
-              <span>
+              <span key={interval}>
                 {time} {interval}{' '}
               </span>
             );
