@@ -38,8 +38,7 @@ interface TimerProps extends Partial<TimeProps> {
 }
 
 type TimerHandle = {
-  pause: () => void;
-  play: () => void;
+  setPaused: (paused: boolean) => void;
 };
 
 const Timer: ForwardRefRenderFunction<TimerHandle, TimerProps> = (
@@ -51,14 +50,11 @@ const Timer: ForwardRefRenderFunction<TimerHandle, TimerProps> = (
   useImperativeHandle(
     ref,
     () => ({
-      pause() {
-        setIsPaused(true);
-      },
-      play() {
-        setIsPaused(false);
+      setPaused(paused) {
+        setIsPaused(paused);
       },
     }),
-    [setIsPaused],
+    [],
   );
   const [timeSeconds, setTimeSeconds] = useState(
     days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds,

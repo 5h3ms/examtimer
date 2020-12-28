@@ -65,11 +65,11 @@ function App(): ReactElement {
   }, [timersCount]);
 
   const onPauseAll = useCallback(() => {
-    timers.forEach((timer) => timer.ref.current?.pause());
+    timers.forEach((timer) => timer.ref.current?.setPaused(true));
   }, [timers]);
 
   const onPlayAll = useCallback(() => {
-    timers.forEach((timer) => timer.ref.current?.play());
+    timers.forEach((timer) => timer.ref.current?.setPaused(false));
   }, [timers]);
 
   return (
