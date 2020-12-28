@@ -1,5 +1,6 @@
 import './Timer.css';
-import { useEffect, useState, ReactElement } from 'react';
+import { useEffect, useState, ReactElement, useCallback } from 'react';
+import { Button } from '@material-ui/core';
 
 interface TimerProps {
   days: number;
@@ -34,21 +35,35 @@ function Timer({
     days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds,
   );
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(timeSeconds));
+  const [isPaused, setIsPaused] = useState(true);
 
   useEffect(() => {
     setTimeSeconds(
       days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds,
     );
-    const timer = setInterval(() => {
-      setTimeSeconds((difference) => difference - 1);
-    }, 1000);
-    // Clear timeout if the component is unmounted
-    return () => clearTimeout(timer);
   }, [days, hours, minutes, seconds]);
 
   useEffect(() => {
     setTimeLeft(calculateTimeLeft(timeSeconds));
   }, [timeSeconds]);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout | null = null;
+    if (!isPaused) {
+      timer = setInterval(() => {
+        setTimeSeconds((difference) => difference - 1);
+      }, 1000);
+    }
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, [isPaused]);
+
+  const onSetPausePlay = useCallback(() => {
+    setIsPaused((isPaused) => !isPaused);
+  }, []);
 
   return (
     <div>
@@ -64,6 +79,7 @@ function Timer({
       ) : (
         <span>Time is up!</span>
       )}
+      <Button onClick={onSetPausePlay}>{isPaused ? 'Play' : 'Pause'}</Button>
     </div>
   );
 }
