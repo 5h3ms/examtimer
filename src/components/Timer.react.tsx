@@ -37,11 +37,15 @@ function Timer({
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(timeSeconds));
   const [isPaused, setIsPaused] = useState(true);
 
-  useEffect(() => {
+  const onReset = useCallback(() => {
+    setIsPaused(true);
     setTimeSeconds(
       days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds,
     );
-  }, [days, hours, minutes, seconds]);
+  }, [days, hours, minutes, seconds, setIsPaused]);
+  useEffect(() => {
+    onReset();
+  }, [onReset]);
 
   useEffect(() => {
     setTimeLeft(calculateTimeLeft(timeSeconds));
@@ -80,6 +84,7 @@ function Timer({
         <span>Time is up!</span>
       )}
       <Button onClick={onSetPausePlay}>{isPaused ? 'Play' : 'Pause'}</Button>
+      <Button onClick={onReset}>Reset</Button>
     </div>
   );
 }

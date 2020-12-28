@@ -1,7 +1,7 @@
 import './App.css';
 import Timer from './components/Timer.react';
 import { useState, useCallback, ReactElement } from 'react';
-import { Grid, Typography, TextField, Card } from '@material-ui/core';
+import { Grid, Typography, TextField, Card, Button } from '@material-ui/core';
 
 import { ThemeProvider } from '@material-ui/core';
 import {
@@ -45,6 +45,8 @@ function App(): ReactElement {
       <div className={classes.root}>
         <CssBaseline />
         <Grid container justify="flex-end">
+          <Button>Play all</Button>
+          <Button>Pause all</Button>
           <IconButton
             color="primary"
             aria-label="add an alarm"
