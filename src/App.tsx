@@ -15,11 +15,12 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AlarmAddIcon from '@material-ui/icons/AlarmAdd';
 import { AlarmAddSharp } from '@material-ui/icons';
 
+const defaultTime = { minutes: 5 };
+
 function App(): ReactElement {
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(() => ({
     root: {
       padding: '20px',
       height: '100vh',
@@ -28,11 +29,9 @@ function App(): ReactElement {
 
   const classes = useStyles();
 
-  const [theme, setTheme] = useState(true);
-  const icon = !theme ? <Brightness7Icon /> : <Brightness4Icon />;
-  const appliedTheme = createMuiTheme(theme ? light : dark);
-
-  const defaultTime = { minutes: 5 };
+  const [isLightTheme, setIsLightTheme] = useState(true);
+  const icon = !isLightTheme ? <Brightness7Icon /> : <Brightness4Icon />;
+  const appliedTheme = createMuiTheme(isLightTheme ? light : dark);
   const [timers, setTimers] = useState([<Timer {...defaultTime} key={0} />]);
 
   const addTimer = useCallback(() => {
@@ -59,7 +58,7 @@ function App(): ReactElement {
             edge="end"
             color="inherit"
             aria-label="mode"
-            onClick={() => setTheme(!theme)}
+            onClick={() => setIsLightTheme(!isLightTheme)}
           >
             {icon}
           </IconButton>
