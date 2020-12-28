@@ -2,7 +2,7 @@ import './Timer.css';
 import { useEffect, useState, ReactElement, useCallback } from 'react';
 import { Button } from '@material-ui/core';
 
-interface TimerProps {
+interface TimeProps {
   days: number;
   hours: number;
   minutes: number;
@@ -10,7 +10,7 @@ interface TimerProps {
 }
 
 // given: time in seconds, function calculates how much time is left in days, minutes, seconds
-function calculateTimeLeft(timeSeconds: number): TimerProps {
+function calculateTimeLeft(timeSeconds: number): TimeProps {
   let timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
   if (timeSeconds > 0) {
@@ -25,12 +25,19 @@ function calculateTimeLeft(timeSeconds: number): TimerProps {
   return timeLeft;
 }
 
+interface TimerProps extends Partial<TimeProps> {
+  index: number;
+  onClose: (index: number) => void;
+}
+
 function Timer({
   days = 0,
   hours = 0,
   minutes = 0,
   seconds = 0,
-}: Partial<TimerProps>): ReactElement {
+  index,
+  onClose,
+}: TimerProps): ReactElement {
   const [timeSeconds, setTimeSeconds] = useState(
     days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds,
   );
@@ -69,6 +76,10 @@ function Timer({
     setIsPaused((isPaused) => !isPaused);
   }, []);
 
+  const onDelete = useCallback(() => {
+    onClose(index);
+  }, [onClose, index]);
+
   return (
     <div>
       {timeSeconds > 0 ? (
@@ -85,6 +96,7 @@ function Timer({
       )}
       <Button onClick={onSetPausePlay}>{isPaused ? 'Play' : 'Pause'}</Button>
       <Button onClick={onReset}>Reset</Button>
+      <Button onClick={onDelete}>Close</Button>
     </div>
   );
 }

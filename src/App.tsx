@@ -17,6 +17,10 @@ import Brightness7Icon from '@material-ui/icons/Brightness7';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { AlarmAddSharp } from '@material-ui/icons';
 
+interface TimerProps {
+  id: number;
+}
+
 const defaultTime = { minutes: 5 };
 
 function App(): ReactElement {
@@ -32,12 +36,21 @@ function App(): ReactElement {
   const [isLightTheme, setIsLightTheme] = useState(true);
   const icon = !isLightTheme ? <Brightness7Icon /> : <Brightness4Icon />;
   const appliedTheme = createMuiTheme(isLightTheme ? light : dark);
-  const [timers, setTimers] = useState([<Timer {...defaultTime} key={0} />]);
 
-  const addTimer = useCallback(() => {
-    const id = timers.length;
-    setTimers((timers) => [...timers, <Timer {...defaultTime} key={id} />]);
-  }, [timers.length]);
+  const [timersCount, setTimersCount] = useState(1);
+  const [timers, setTimers] = useState<Array<TimerProps>>([{ id: 0 }]);
+  const onRemoveTimer = useCallback(
+    (index) => {
+      setTimers((timers) => timers.filter((value) => value.id !== index));
+    },
+    [setTimers],
+  );
+
+  const onAddTimer = useCallback(() => {
+    const id = timersCount;
+    setTimers((timers) => [...timers, { id: id }]);
+    setTimersCount((count) => count + 1);
+  }, [timersCount]);
 
   return (
     <ThemeProvider theme={appliedTheme}>
@@ -49,7 +62,7 @@ function App(): ReactElement {
           <IconButton
             color="primary"
             aria-label="add an alarm"
-            onClick={addTimer}
+            onClick={onAddTimer}
           >
             <AlarmAddSharp />
           </IconButton>
@@ -76,11 +89,16 @@ function App(): ReactElement {
         </Grid>
 
         <Grid container spacing={5} justify="center">
-          {timers.map((timer, index) => (
-            <Grid item xs={6} key={index} justify="center">
+          {timers.map(({ id }) => (
+            <Grid item xs={6} key={id} justify="center">
               <Card variant="outlined" className="Card">
-                <Typography variant="h5">Timer {index}</Typography>
-                {timer}
+                <Typography variant="h5">Timer {id}</Typography>
+                <Timer
+                  {...defaultTime}
+                  index={id}
+                  key={id}
+                  onClose={onRemoveTimer}
+                />
               </Card>
             </Grid>
           ))}
