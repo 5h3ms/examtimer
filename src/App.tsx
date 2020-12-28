@@ -1,7 +1,7 @@
 import './App.css';
 import Timer from './components/Timer.react';
 import { useState, useCallback, ReactElement } from 'react';
-import { Grid, Typography, TextField, Card, Button } from '@material-ui/core';
+import { Grid, Typography, TextField, Card } from '@material-ui/core';
 
 import { ThemeProvider } from '@material-ui/core';
 import {
@@ -11,11 +11,12 @@ import {
 } from '@material-ui/core/styles';
 
 import IconButton from '@material-ui/core/IconButton';
-import Brightness3Icon from '@material-ui/icons/Brightness3';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AlarmAddIcon from '@material-ui/icons/AlarmAdd';
+import { AlarmAddSharp } from '@material-ui/icons';
 
 function App(): ReactElement {
   const useStyles = makeStyles((theme) => ({
@@ -28,7 +29,7 @@ function App(): ReactElement {
   const classes = useStyles();
 
   const [theme, setTheme] = useState(true);
-  const icon = !theme ? <Brightness7Icon /> : <Brightness3Icon />;
+  const icon = !theme ? <Brightness7Icon /> : <Brightness4Icon />;
   const appliedTheme = createMuiTheme(theme ? light : dark);
 
   const defaultTime = { minutes: 5 };
@@ -44,12 +45,13 @@ function App(): ReactElement {
       <div className={classes.root}>
         <CssBaseline />
         <Grid container justify="flex-end">
-          <Button
-            variant="contained"
+          <IconButton
             color="primary"
+            aria-label="add an alarm"
             onClick={addTimer}
-            startIcon={<AlarmAddIcon />}
-          ></Button>
+          >
+            <AlarmAddSharp />
+          </IconButton>
 
           <IconButton
             edge="end"
