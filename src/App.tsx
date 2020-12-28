@@ -101,9 +101,9 @@ function App(): ReactElement {
             fullWidth
             variant="standard"
             defaultValue="CENTRE NUMBER"
+            InputProps={{ disableUnderline: true }}
             inputProps={{
               style: { fontSize: 90, textAlign: 'center' },
-              disableUnderline: true,
             }}
           ></TextField>
         </Grid>
