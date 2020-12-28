@@ -1,5 +1,12 @@
 import './Timer.css';
-import { useEffect, useState, ReactElement, useCallback } from 'react';
+import {
+  forwardRef,
+  useImperativeHandle,
+  useEffect,
+  useState,
+  ForwardRefRenderFunction,
+  useCallback,
+} from 'react';
 import { Button } from '@material-ui/core';
 
 interface TimeProps {
@@ -30,19 +37,33 @@ interface TimerProps extends Partial<TimeProps> {
   onClose: (index: number) => void;
 }
 
-function Timer({
-  days = 0,
-  hours = 0,
-  minutes = 0,
-  seconds = 0,
-  index,
-  onClose,
-}: TimerProps): ReactElement {
+type TimerHandle = {
+  pause: () => void;
+  play: () => void;
+};
+
+const Timer: ForwardRefRenderFunction<TimerHandle, TimerProps> = (
+  { days = 0, hours = 0, minutes = 0, seconds = 0, index, onClose }: TimerProps,
+  ref,
+) => {
+  const [isPaused, setIsPaused] = useState(true);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      pause() {
+        setIsPaused(true);
+      },
+      play() {
+        setIsPaused(false);
+      },
+    }),
+    [setIsPaused],
+  );
   const [timeSeconds, setTimeSeconds] = useState(
     days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds,
   );
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(timeSeconds));
-  const [isPaused, setIsPaused] = useState(true);
 
   const onReset = useCallback(() => {
     setIsPaused(true);
@@ -99,6 +120,6 @@ function Timer({
       <Button onClick={onDelete}>Close</Button>
     </div>
   );
-}
+};
 
-export default Timer;
+export default forwardRef(Timer);
