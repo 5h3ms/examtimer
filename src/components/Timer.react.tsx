@@ -54,7 +54,7 @@ const Timer: ForwardRefRenderFunction<TimerHandle, TimerProps> = (
         setIsPaused(paused);
       },
     }),
-    [],
+    [setIsPaused],
   );
   const [timeSeconds, setTimeSeconds] = useState(
     days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds,
@@ -67,9 +67,6 @@ const Timer: ForwardRefRenderFunction<TimerHandle, TimerProps> = (
       days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds,
     );
   }, [days, hours, minutes, seconds, setIsPaused]);
-  useEffect(() => {
-    onReset();
-  }, [onReset]);
 
   useEffect(() => {
     setTimeLeft(calculateTimeLeft(timeSeconds));
