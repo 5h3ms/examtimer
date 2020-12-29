@@ -7,7 +7,7 @@ import {
   ForwardRefRenderFunction,
   useCallback,
 } from 'react';
-import { Button } from '@material-ui/core';
+import { Grid, Typography, Card, Button } from '@material-ui/core';
 
 interface TimeProps {
   days: number;
@@ -95,23 +95,26 @@ const Timer: ForwardRefRenderFunction<TimerHandle, TimerProps> = (
   }, [onClose, index]);
 
   return (
-    <div>
-      {timeSeconds > 0 ? (
-        Object.entries(timeLeft).flatMap(([interval, time]) => {
-          if (time > 0)
-            return (
-              <span key={interval}>
-                {time} {interval}{' '}
-              </span>
-            );
-        })
-      ) : (
-        <span>Time is up!</span>
-      )}
-      <Button onClick={onSetPausePlay}>{isPaused ? 'Play' : 'Pause'}</Button>
-      <Button onClick={onReset}>Reset</Button>
-      <Button onClick={onDelete}>Close</Button>
-    </div>
+    <Grid item xs={6}>
+      <Card variant="outlined" className="Card">
+        <Typography variant="h5">Timer {index + 1}</Typography>
+        {timeSeconds > 0 ? (
+          Object.entries(timeLeft).flatMap(([interval, time]) => {
+            if (time > 0)
+              return (
+                <span key={interval}>
+                  {time} {interval}{' '}
+                </span>
+              );
+          })
+        ) : (
+          <span>Time is up!</span>
+        )}
+        <Button onClick={onSetPausePlay}>{isPaused ? 'Play' : 'Pause'}</Button>
+        <Button onClick={onReset}>Reset</Button>
+        <Button onClick={onDelete}>Close</Button>
+      </Card>
+    </Grid>
   );
 };
 

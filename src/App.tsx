@@ -7,7 +7,7 @@ import {
   RefObject,
   createRef,
 } from 'react';
-import { Grid, Typography, TextField, Card, Button } from '@material-ui/core';
+import { Grid, TextField, Button } from '@material-ui/core';
 
 import { ThemeProvider } from '@material-ui/core';
 import {
@@ -110,18 +110,13 @@ function App(): ReactElement {
 
         <Grid container spacing={5} justify="center">
           {timers.map(({ id, ref }) => (
-            <Grid item xs={6} key={id}>
-              <Card variant="outlined" className="Card">
-                <Typography variant="h5">Timer {id}</Typography>
-                <Timer
-                  {...defaultTime}
-                  index={id}
-                  key={id}
-                  ref={ref}
-                  onClose={onRemoveTimer}
-                />
-              </Card>
-            </Grid>
+            <Timer
+              {...defaultTime}
+              key={id}
+              index={id}
+              ref={ref}
+              onClose={onRemoveTimer}
+            />
           ))}
         </Grid>
       </div>
