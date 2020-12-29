@@ -110,7 +110,7 @@ function App(): ReactElement {
 
         <Grid container spacing={5} justify="center">
           {timers.map(({ id, ref }) => (
-            <Grid item xs={6} key={id} justify="center">
+            <Grid item xs={6} key={id}>
               <Card variant="outlined" className="Card">
                 <Typography variant="h5">Timer {id}</Typography>
                 <Timer
