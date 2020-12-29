@@ -110,7 +110,11 @@ const Timer: ForwardRefRenderFunction<TimerHandle, TimerProps> = (
         ) : (
           <span>Time is up!</span>
         )}
-        <Button onClick={onSetPausePlay}>{isPaused ? 'Play' : 'Pause'}</Button>
+        {timeSeconds > 0 && (
+          <Button onClick={onSetPausePlay}>
+            {isPaused ? 'Play' : 'Pause'}
+          </Button>
+        )}
         <Button onClick={onReset}>Reset</Button>
         <Button onClick={onDelete}>Close</Button>
       </Card>
